@@ -17,7 +17,7 @@ jobs:
       - name: Install python version
         uses: gabrielfalcao/pyenv-action@v9
         with:
-          default: "${{ matrix.python }}"
+          default: 3.7.12
           command: pip install -U pip  # upgrade pip after installing python
 
       - name: Test python and pip version
