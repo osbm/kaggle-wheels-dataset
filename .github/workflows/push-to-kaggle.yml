@@ -1,0 +1,43 @@
+---
+name: Lint Code Base
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Lint Code Base
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+    - name: Install python version
+      uses: gabrielfalcao/pyenv-action@v9
+      with:
+        default: "${{ matrix.python }}"
+        command: pip install -U pip  # upgrade pip after installing python
+
+    - name: Test python and pip version
+      run: |
+        pip --version        
+
+#      - name: Install Dependencies
+#        run: |
+#          pip install -r requirements.txt
+#
+#      - name: Kaggle login
+#        run: |
+#          
+#
+#      - name: Create dataset directory and enter
+#        run: |
+#          mkdir -p dataset
+#          cd dataset
+#
+#      - name: Run script to create dataset
+#        run: |
+#          python create_dataset.py
+#          """
