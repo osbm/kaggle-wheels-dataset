@@ -1,13 +1,13 @@
 ---
-name: Lint Code Base
+name: push to kaggle
 
 on:
   push:
   workflow_dispatch:
 
 jobs:
-  build:
-    name: Lint Code Base
+  create-and-upload-dataset:
+    name: push to kaggle
     runs-on: ubuntu-latest
 
     steps:
