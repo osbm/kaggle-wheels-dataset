@@ -23,7 +23,7 @@ jobs:
       - name: Test python and pip version
         run: |
           pip --version
-          python --versions
+          python --version
 
 #      - name: Install Dependencies
 #        run: |
