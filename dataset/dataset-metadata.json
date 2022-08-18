@@ -1,0 +1,10 @@
+{
+  "title": "Python wheels dataset",
+  "subtitle": "This dataset contains Python wheels for internet disabled code competitions.",
+  "id": "osmanf/python-wheels",
+  "licenses": [
+    {
+      "name": "CC0-1.0"
+    }
+  ]
+}
