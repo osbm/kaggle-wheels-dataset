@@ -7,7 +7,7 @@ on:
       - ".github/workflows/push-to-kaggle.yml"
       - "requirements-dataset.txt"
   schedule: # Schedule the workflow to run every day at midnight
-    cron: "0 0 * * *"
+  - cron: "0 0 * * *"
 
 jobs:
   create-and-upload-dataset:
