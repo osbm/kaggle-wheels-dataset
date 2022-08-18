@@ -3,7 +3,11 @@ name: push to kaggle
 
 on:
   push:
-  workflow_dispatch:
+    paths:
+      - ".github/workflows/push-to-kaggle.yml"
+      - "requirements-dataset.txt"
+  schedule: # Schedule the workflow to run every day at midnight
+    cron: "0 0 * * *"
 
 jobs:
   create-and-upload-dataset:
@@ -14,31 +18,26 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Install python version
-        uses: gabrielfalcao/pyenv-action@v9
+      - name: Install python 3.7.12
+        uses: actions/setup-python@v4
         with:
-          default: 3.7.12
-          command: pip install -U pip  # upgrade pip after installing python
+          python-version: '3.7.12' 
 
-      - name: Test python and pip version
+      - name: Install Dependencies
         run: |
-          pip --version
-          python --version
+          pip install -r requirements.txt
 
-#      - name: Install Dependencies
-#        run: |
-#          pip install -r requirements.txt
-#
-#      - name: Kaggle login
-#        run: |
-#          
-#
-#      - name: Create dataset directory and enter
-#        run: |
-#          mkdir -p dataset
-#          cd dataset
-#
-#      - name: Run script to create dataset
-#        run: |
-#          python create_dataset.py
-#          """
+      - name: Kaggle login
+        uses: osbm/kaggle-login@v2
+        with:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+
+        
+      - name: Download wheels
+        run: |
+          pip wheel -r requirements-dataset.txt -w ./dataset/  
+
+      - name: Upload dataset to kaggle
+        run: |
+          kaggle datasets version -p ./dataset/ -m "Updating wheels" 
