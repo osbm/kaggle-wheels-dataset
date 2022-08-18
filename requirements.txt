@@ -1,0 +1,5 @@
+kaggle
+jupyter-packaging
+packaging
+wheel
+setuptools
