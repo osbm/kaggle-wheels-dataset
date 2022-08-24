@@ -1,3 +1,5 @@
 segmentation-models
 tensorflow-io
 lux
+pythae
+osbm
