@@ -1,5 +1,7 @@
 segmentation-models
+segmentation-models-pytorch
 tensorflow-io
 lux
 pythae
 osbm
+optuna
